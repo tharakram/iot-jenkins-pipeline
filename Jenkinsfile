@@ -15,7 +15,7 @@ node {
 
   stage('Build') {
     echo "Build started"
-    azureIoTEdgeBuild defaultPlatform: 'amd64', deploymentManifestFilePath: 'deployment.template.json'
+    
     echo "Build deployment.json complete"
     echo "Build complete"
   }
