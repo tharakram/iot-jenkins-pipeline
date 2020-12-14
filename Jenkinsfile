@@ -17,9 +17,6 @@ node {
     echo "Build started"
     azureIoTEdgeBuild defaultPlatform: 'amd64', deploymentManifestFilePath: 'deployment.template.json'
     echo "Build deployment.json complete"
-    
-    
-    azureIoTEdgePush dockerRegistryType: 'acr', acrName: 'tharak', bypassModules: '', azureCredentialsId: 'az-tharak-service-principal', resourceGroup: 'iot-hub-tharak-rg', rootPath: './'
     echo "Build complete"
   }
   
