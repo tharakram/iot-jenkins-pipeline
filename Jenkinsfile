@@ -15,8 +15,8 @@ node {
 
   stage('Build') {
     echo "Build started"
-    
-    echo "Build deployment.json complete"
+    sh pwd
+    sh ls
     echo "Build complete"
   }
   
