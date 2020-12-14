@@ -15,8 +15,17 @@ node {
 
   stage('Build') {
     echo "Build started"
+    azureIoTEdgeBuild defaultPlatform: 'amd64', deploymentManifestFilePath: 'deployment.template.json'
+    echo "Build deployment.json complete"
+    
+    
     azureIoTEdgePush dockerRegistryType: 'acr', acrName: 'tharak', bypassModules: '', azureCredentialsId: 'az-tharak-service-principal', resourceGroup: 'iot-hub-tharak-rg', rootPath: './'
     echo "Build complete"
+  }
+  
+  stage('Push') {
+    echo "Pushing the image to container"
+    azureIoTEdgePush dockerRegistryType: 'acr', dockerRegistryEndpoint: [credentialsId: 'az-tharak-service-principal', url: 'tharak.azurecr.io'], bypassModules: '', resourceGroup: 'iot-hub-tharak-rg', defaultPlatform: 'amd64', deploymentManifestFilePath: 'deployment.template.json'
   }
 
   stage('Deploy') {
